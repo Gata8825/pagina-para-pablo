@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una página especial para ti ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('fondo.jpg'); /* Cambia 'fondo.jpg' por el nombre de tu imagen */
+            background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            text-align: center;
+            padding: 20px;
+            color: #000; /* Cambia el color del texto para que sea legible sobre la imagen */
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        p {
+            font-size: 18px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para que el texto sea legible */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Estilos para las pestañas principales */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-bottom: 20px; /* Espacio entre las pestañas y el contenido */
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            color: #000; /* Texto de los botones en negro */
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        /* Estilos para el contenido de las pestañas */
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        /* Estilos para el botón de reproducción */
+        #playButton {
+            background-color: #ff6f61;
+            color: white;
+            border: 2px solid white; /* Borde blanco añadido */
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px; /* Margen superior */
+            margin-bottom: 40px; /* Margen inferior para separar el botón del contenedor */
+        }
+        #playButton:hover {
+            background-color: #e65a50;
+        }
+        /* Estilos para el reproductor de Spotify */
+        .spotify-player {
+            width: 100%; /* Ancho del reproductor */
+            max-width: 560px; /* Ancho máximo */
+            height: 352px; /* Alto del reproductor */
+            margin: 0 auto; /* Centrar el reproductor */
+            border-radius: 12px; /* Bordes redondeados */
+            margin-top: 40px; /* Espacio entre el párrafo y la playlist */
+            margin-bottom: 40px; /* Espacio entre la playlist y la frase */
+        }
+        /* Estilos para el párrafo centrado */
+        .centered-text {
+            text-align: justify; /* Justifica el texto */
+            margin: 0 auto 40px; /* Margen inferior de 40px para igualar el espacio */
+            max-width: 600px; /* Ajusta el ancho máximo según sea necesario */
+        }
+        /* Estilos para las pestañas internas verticales */
+        .tab-interna {
+            display: flex; /* Usamos flexbox para alinear las pestañas y el contenido */
+        }
+        .tablink-interna {
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 17px;
+            color: #000;
+            text-align: left; /* Alineación del texto */
+            margin-right: 10px; /* Espacio entre pestañas */
+            border-radius: 5px; /* Bordes redondeados */
+            display: block; /* Hace que los botones ocupen toda la línea */
+            width: 100%; /* Ancho completo */
+            margin-bottom: 5px; /* Espacio entre botones */
+        }
+        .tablink-interna:hover {
+            background-color: #ddd;
+        }
+        .tablink-interna.active {
+            background-color: #ccc;
+        }
+        /* Estilos para el contenido de las cartas */
+        .carta-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: 10px; /* Espacio entre pestañas y contenido */
+            flex: 1; /* Ocupa el espacio restante */
+            text-align: justify; /* Justifica el texto */
+        }
+        /* Estilos específicos para el título de las cartas */
+        .carta-content h3 {
+            text-align: center; /* Centra el título */
+        }
+    </style>
+</head>
+<body>
+    <!-- Reproductor de audio -->
+    <audio id="miCancion" loop>
+        <source src="Josean Log Beso.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <!-- Botón para reproducir/pausar la canción -->
+    <button id="playButton">Reproducir música</button>
+
+    <div class="container">
+        <h1>Para Pablo ❤️</h1>
+        <p>Esta página es mi regalo para hoy. Te amo.</p>
+
+        <!-- Pestañas principales -->
+        <div class="tab">
+            <button class="tablink" onclick="openTab(event, 'Cartas')">Cartas</button>
+            <button class="tablink" onclick="openTab(event, 'Fotos')">Fotos</button>
+            <button class="tablink" onclick="openTab(event, 'Música')">Música</button>
+        </div>
+
+        <!-- Contenido de las pestañas principales -->
+        <div id="Cartas" class="tabcontent">
+            <h2>Cartas para ti</h2>
+            <!-- Pestañas internas verticales -->
+            <div class="tab-interna">
+                <!-- Columna de pestañas -->
+                <div>
+                    <button class="tablink-interna" onclick="openCarta(event, 'Amigos')">Amigos</button>
+                    <button class="tablink-interna" onclick="openCarta(event, 'Novios')">Novios</button>
+                    <button class="tablink-interna" onclick="openCarta(event, 'Dom')">Dom</button>
+                </div>
+
+                <!-- Contenido de las cartas -->
+                <div id="Amigos" class="carta-content">
+                    <h3>Alguien dijo una vez que la conversación es el sexo del alma</h3>
+                    <p>
+                        “Alguien dijo alguna vez que la conversación es el sexo del alma” Probablemente has oído antes esta frase. Yo la leí por ahí, pero la acabo de recordar y pensé en ti.<br><br>
+                        Una vez te dije que eres raro. No sé por qué buscabas una explicación más “profunda” a la palabra raro. Pero me refería a que aún percibo tu presencia en mi vida con una extrañeza inexplicable. Inexplicable, pero feliz. Realmente no sé decir en qué momento exactamente me encariñé tanto contigo. No tengo un día o fecha, no tengo un momento que recuerde de forma tangible. Pero si eres raro. La gente suele encariñarse con la presencia física de una persona. Las conversaciones suelen ser en persona. A vos te he visto solo 2 veces. Bueno 3, si contamos el breve encuentro hace años en el que me pediste mi número de celular. El mismo número que extrañamente conservé y no perdí a través de los años.<br><br>
+                        No esperaba encariñarme de alguien a quien pues, no “conozco”. Realmente si tienes muchísima energía de aire. Llegas como un torbellino lleno de recuerdos no compartidos, o con mil preguntas sobre mil temas diferentes o a veces como brisa suave, una brisa cálida de verano, una brisa que solo te acaricia y está contigo haciéndote compañía.<br><br>
+                        Eres tempestuoso a tu manera. Pero me gusta. Creo que estoy aprendiendo a conocerte, vos me llevas un poco de ventaja en eso. Me conoces un poquito más de lo que yo te conozco a ti.<br><br>
+                        Agradezco la energía curiosa e infantil con la que llegas a mi vida. Me imagino que les pasa a todos los que te conocen, pero es como si me recordaras a cuando yo tenía curiosidad y pasión por la vida. Quizás sacas eso en las personas también, una introspección emocional respecto a su propia actitud de curiosidad hacia la vida y el universo.<br><br>
+                        Yo me siento completamente anciana a tu lado. A veces pareces un hermanito mío o un hijito, no sé. Alguien a quien disfrutas ver como se maravilla con el mundo y sus mil preguntas y respuestas y dices, vaya…soy una anciana que se ha quedado sin preguntas y cree que el dolor que siente constantemente ya le ha enseñado todo lo que había por aprender en esta vida. Una ancianita resignada a su dolor.<br><br>
+                        ¿Entiendes por qué se me hace raro y refrescante tu presencia? Si, eres raro pues.<br><br>
+                        Creo que me gustaría agarrar tu libro favorito y leértelo como si tuvieras 5 años. Disfruto conocerte. Probablemente crees que no estoy prestando atención porque estás acostumbrado a la versión de mí que es ajena al mundo. Pero te prometo que no es así. Esta vez estoy prestando mucha atención. Probablemente crees que he estado distraída, y aunque es probable que nunca deje de serlo, aunque es probable que no me importen muchos detalles que quizás para ti podrían ser importantes (como tu apellido), estoy prestando atención a otro tipo de detalles que son sustanciales. También tienes tu encanto. Creo que nunca había conocido a un hombre tan niño y a un niño tan hombre. Será una dualidad geminiana o solo tuya? A veces creo que es una cosa solo muy tuya, porque los otros géminis que conozco no son tan extraños como vos. Como sea….son cositas y detallitos que iré descubriendo a medida que siga desmenuzando los pedacitos de sorpresa cotidianas que es conocerte.<br><br>
+                        Si. Me gusta conocer gente. Pero muchas veces desde un punto de vista de egoísmo cínico o desde un punto de vista del aburrimiento existencialista. Vos eres otra cosa. Es realmente un placer, un disfrute enorme conocerte, y simplemente hablar.<br><br>
+                        Gracias por recordarme que existe tantísimo placer en una conversación, como puede existir en la lectura o en la escritura. Quizás no habría recordado que puede haber tanto, tanto placer solo por hablar y oír a otra persona.<br><br>
+                        Disculpa mi hedonismo al nombrar este intercambio como placer, pero simplemente no encuentro mejor palabra que pueda describir lo deli que es simplemente leerte y charlar con vos. Bueno somos quienes somos, y quizás si me pidieras una frase en lugar de una palabra diría algo como “el placer de oír sus palabras se asemeja quizás al de las vírgenes descubriendo las mieles sexuales turgentes, prohibidas, secretas y potentes que arrollan los sentidos y dejan una marca para siempre en el recuerdo y en el alma” <br><br>
+                        …<br><br>
+                        Tienes razón, quizás no deje de ser ninfómana nunca. Quizás ahora se expresa de diferente forma. En todo caso no quiero ser tan exquisita o explícita, así que solo le diré el placer de charlar con vos.<br><br>
+                        “Alguien dijo alguna vez que la conversación es el sexo del alma” Quien lo dijo, quizás tenía un Pablito en su mente cuando lo dijo.<br><br>
+                        Gata<br><br>
+                        7/14/24<br><br>
+                    </p>
+                </div>
+
+                <div id="Novios" class="carta-content">
+                    <h3>Carta de Novios</h3>
+                    <p>
+                        Mi amor,<br><br>
+                        Desde que empezamos esta relación, blablablablabla no puedo esperar para seguir creciendo a tu lado.<br><br>
+                        Te amo,<br>
+                        Gata
+                    </p>
+                </div>
+
+                <div id="Dom" class="carta-content">
+                    <h3>Para un gato</h3>
+                    <p>
+                        Gata yo siempre.<br>
+                        Gata, puta.<br>
+                        Me desnudé ante ti, como amiga, como persona, como novia y como gata.<br>
+                        Gata, gata del deseo, gata del fuego, gata herida, gata arisca, gata sumisa.<br>
+                        Un gato me buscó en las noches, un gato tierno, cruel, valiente, un gato herido también.<br>
+                        El gato me hizo suya y no podré soltarlo nunca más, ni él a mí.<br>
+                        El gato me hizo suya y me lastimó y nos lastimamos. Llevo sus marcas en el alma.<br>
+                        Y como gata en celo, lo busco todas las noches, le pido que me susurre nuevamente sus maullidos al oído y que me haga suya por siempre.<br>
+                        Y si el destino nos marca con garras invisibles, que sea bajo la luna de siempre, entre caricias de sombras, y con maullidos de placer sin fin.<br><br>
+                        En medio de gemidos, en medio de suspiros, me pediste 3 cartas. Una para mi novio, una para mi amante y otra para mi dom. Es inevitable que la primera carta que me venga a las manos, sea para el dom.<br><br>
+                        Pienso en ti y se desatan las pasiones. Pienso en ti y pierdo el control y la cordura. Pienso en tu rostro dulce que delata el sabor de tu semen, como miel para gatas traviesas, y es perfecto, es simplemente perfecto, porque contigo no quiero control, no quiero cordura, quiero perderme en el sublime deseo que solamente me provoca tu aparición, tu sed de satisfacción, tu poder sublime para llevarme al orgasmo.<br><br>
+                        Eres como la abeja a la flor, eres como la marea a la luna, eres como el fuego a la piel, quemando con cada roce.<br><br>
+                        Pienso en tus labios que escupen placer, pienso en tu cuello que huele a hombre excitado, a macho cabrío, lleno de pasión, pasión cítrica, envolvente, inevitable, imparable, incontenible. Pasión fresca y energética, despierta todos mis sentidos, y todas mis fantasías.<br><br>
+                        Estoy cerca de ti y soy presa, no puedo escapar, no puedo escapar a la dulzura que provoca tu instinto. Instinto de hombre, instinto de macho, instinto de gato, que posee, que domina, que libera, que engrandece, que explota, que explota en lujuria, en orgasmo, orgasmo eterno, orgasmo infinito y sin embargo orgasmo único e irrepetible.<br><br>
+                        Orgasmo que nace y muere con tu voluntad. Orgasmo que es solo tuyo y mío, nos pertenece solo a nosotros, a nosotros y al universo.<br><br>
+                        Mi placer te pertenece. Solo a ti. A ti, a tus labios, a tu lengua, a tus manos, a tu piel, a tu pene. A tus palabras, a tus poemas, a tus gemidos, a tus maullidos. Solo a ti.<br><br>
+                        Me has hecho tuya de tantas formas, pero descubrir mi secreto, esa faceta oculta que guardo bajo una llave de vulnerabilidad, es un regalo solo para ti. Solo tú tienes la llave y solo contigo puedo vivirla.<br><br>
+                        Quiero recorrerte siempre y que ese rincón profundo, de tu corazón, y potente de tu cuerpo, que se erige ante mi llamado de gata, que crece alegre ante mi presencia y me penetra con toda su fuerza de macho caliente, no deje jamás de abrirse paso en mis piernas débiles y delicadas, que se deleitan con su ternura.<br><br>
+                        No dejes de darme las mieles de tu amor y de tu cuerpo nunca, pero nunca jamás.<br><br>
+
+
+                        Con todo mi anhelo,<br><br>
+                        Gata<br><br>
+                        2/14/2025<br><br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Fotos" class="tabcontent">
+            <h2>Nuestras fotos</h2>
+            <p class="centered-text">Subo solamente las últimas fotos que tenemos "juntos". Espero que me ayudes a completar las fotos significativas que tuvimos con una línea cronológica de nuestra relación.</p>
+            <!-- Imagen de la cerveza -->
+            <img src="cerveza.jpg" alt="Foto de cerveza">
+            <p>Disfrutando juntos un buen momento con una cerveza fría de chocolate. 🍻</p>
+        
+            <!-- Imagen de "juntos" -->
+            <img src="juntos.jpg" alt="Foto juntos">
+            <p>Momentos que hacen que la vida sea aún más especial. ❤️</p>
+        </div>
+
+        <div id="Música" class="tabcontent">
+            <h2>Algunas de nuestras canciones</h2>
+            <p class="centered-text">Sé que faltan algunas o quizás muchas otras canciones que nos hemos dedicado o que nos han definido. Estas 12 canciones son las que más recuerdo y siento que resuenan con nosotros, en mi memoria y corazón.</p>
+            <!-- Reproductor de Spotify -->
+            <div class="spotify-player">
+                <iframe
+                    style="border-radius:12px"
+                    src="https://open.spotify.com/embed/playlist/2JNmUB93EdKKgclgf5LoJi?utm_source=generator"
+                    width="100%"
+                    height="352"
+                    frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy">
+                </iframe>
+            </div>
+            <p>¡Gracias por estar en mi vida!</p>
+            <p>Eres lo mejor que me ha pasado.</p>
+            <!-- Agrega más mensajes aquí -->
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir pestañas principales
+        function openTab(evt, tabName) {
+            // Oculta todo el contenido de las pestañas
+            var tabcontent = document.getElementsByClassName("tabcontent");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Desactiva todas las pestañas
+            var tablinks = document.getElementsByClassName("tablink");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Muestra la pestaña actual y marca el botón como activo
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Función para abrir las cartas (pestañas internas)
+        function openCarta(evt, cartaName) {
+            // Oculta todo el contenido de las cartas
+            var cartaContent = document.getElementsByClassName("carta-content");
+            for (var i = 0; i < cartaContent.length; i++) {
+                cartaContent[i].style.display = "none";
+            }
+
+            // Desactiva todas las pestañas internas
+            var tablinksInterna = document.getElementsByClassName("tablink-interna");
+            for (var i = 0; i < tablinksInterna.length; i++) {
+                tablinksInterna[i].className = tablinksInterna[i].className.replace(" active", "");
+            }
+
+            // Muestra la carta actual y marca el botón como activo
+            document.getElementById(cartaName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Abre la primera pestaña principal por defecto
+        document.getElementsByClassName("tablink")[0].click();
+
+        // Abre la primera carta por defecto
+        document.getElementsByClassName("tablink-interna")[0].click();
+
+        // Controla la reproducción y pausa de la canción
+        const playButton = document.getElementById('playButton');
+        const audio = document.getElementById('miCancion');
+
+        playButton.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playButton.textContent = 'Pausar música';
+            } else {
+                audio.pause();
+                playButton.textContent = 'Reproducir música';
+            }
+        });
+    </script>
+</body>
+</html>
